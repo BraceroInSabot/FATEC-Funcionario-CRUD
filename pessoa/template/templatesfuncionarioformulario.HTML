@@ -1,0 +1,58 @@
+<!-- templates/funcionario/formulario.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cadastro de Funcionário</title>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-5">
+    <h2 th:text="${funcionario.id == null} ? 'Novo Funcionário' : 'Editar Funcionário'"></h2>
+
+    <form th:action="@{/funcionarios}" th:object="${funcionario}" method="post">
+        <input type="hidden" th:field="*{id}" />
+
+        <div class="mb-3">
+            <label class="form-label">Primeiro Nome</label>
+            <input type="text" th:field="*{primeiroNome}" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Segundo Nome</label>
+            <input type="text" th:field="*{segundoNome}" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Endereço</label>
+            <input type="text" th:field="*{endereco}" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Sexo</label>
+            <select th:field="*{sexo}" class="form-select" required>
+                <option value="">Selecione</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Feminino">Feminino</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">CPF</label>
+            <input type="text" th:field="*{cpf}" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Data de Nascimento</label>
+            <input type="date" th:field="*{dataNascimento}" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Telefone</label>
+            <input type="text" th:field="*{telefone}" class="form-control" required />
+        </div>
+
+        <button type="submit" class="btn btn-success">Salvar</button>
+        <a th:href="@{/funcionarios}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</body>
+</html>
