@@ -1,4 +1,4 @@
-<!-- templates/funcionario/formulario.html -->
+{% load %}
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -10,49 +10,48 @@
     <h2 th:text="${funcionario.id == null} ? 'Novo Funcionário' : 'Editar Funcionário'"></h2>
 
     <form th:action="@{/funcionarios}" th:object="${funcionario}" method="post">
-        <input type="hidden" th:field="*{id}" />
-
+        {% csrf_token %}
         <div class="mb-3">
             <label class="form-label">Primeiro Nome</label>
-            <input type="text" th:field="*{primeiroNome}" class="form-control" required />
+            <input type="text" name="primeiroNome" id="primeiroNome" class="form-control" required />
         </div>
 
         <div class="mb-3">
             <label class="form-label">Segundo Nome</label>
-            <input type="text" th:field="*{segundoNome}" class="form-control" required />
+            <input type="text" name="segundoNome" id="segundoNome" class="form-control" required />
         </div>
 
         <div class="mb-3">
             <label class="form-label">Endereço</label>
-            <input type="text" th:field="*{endereco}" class="form-control" required />
+            <input type="text" name="endereco" id="endereco" class="form-control" required />
         </div>
 
         <div class="mb-3">
             <label class="form-label">Sexo</label>
-            <select th:field="*{sexo}" class="form-select" required>
+            <select name="sexo" id="sexo" class="form-select" required>
                 <option value="">Selecione</option>
-                <option value="Masculino">Masculino</option>
-                <option value="Feminino">Feminino</option>
+                <option value="M">Masculino</option>
+                <option value="F">Feminino</option>
             </select>
         </div>
 
         <div class="mb-3">
             <label class="form-label">CPF</label>
-            <input type="text" th:field="*{cpf}" class="form-control" required />
+            <input type="text" name="cpf" id="cpf" class="form-control" required />
         </div>
 
         <div class="mb-3">
             <label class="form-label">Data de Nascimento</label>
-            <input type="date" th:field="*{dataNascimento}" class="form-control" required />
+            <input type="date" name="dataNasc" id="dataNasc" class="form-control" required />
         </div>
 
         <div class="mb-3">
             <label class="form-label">Telefone</label>
-            <input type="text" th:field="*{telefone}" class="form-control" required />
+            <input type="text" name="telefone" id="telefone" class="form-control" required />
         </div>
 
         <button type="submit" class="btn btn-success">Salvar</button>
-        <a th:href="@{/funcionarios}" class="btn btn-secondary">Cancelar</a>
+        <a href="{% url 'listar_funcionario' %}" class="btn btn-secondary">Cancelar</a>
     </form>
 </body>
 </html>

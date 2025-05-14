@@ -10,10 +10,11 @@
 <body class="container mt-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1>Funcionários</h1>
-        <a href="#" class="btn btn-primary">Adicionar Funcionário</a>
+        <a href="{% url 'cadastrar_funcionario' %}" class="btn btn-primary">Adicionar Funcionário</a>
     </div>
 
     {% for f in funcionarios %}
+    <hr>
         <div class="card mb-3">
             <div class="card-body">
                 <h5 class="card-title">{{ f.primeiroNome }} {{ f.segundoNome }}</h5>
