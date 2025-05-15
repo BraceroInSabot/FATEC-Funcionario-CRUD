@@ -44,6 +44,7 @@ class CadastrarFuncionariosView(CreateView):
     
 class EditarFuncionarioView(UpdateView):
     template_name = 'templateFuncEditar.html'
+    success_url = reverse_lazy('listar_funcionario')
 
     def get(self, request, pk):
         funcionario = Funcionario.objects.get(pk=pk)
@@ -60,5 +61,19 @@ class EditarFuncionarioView(UpdateView):
         funcionario.telefone = request.POST.get('telefone')
 
         funcionario.save()
+        
+        return redirect('listar_funcionario')
+    
+class DeletarFuncionarioView(UpdateView):
+    template_name = 'templateFuncDeletar.html'
+    success_url = reverse_lazy('listar_funcionario')
+
+    def get(self, request, pk):
+        funcionario = Funcionario.objects.get(pk=pk)
+        return render(request, self.template_name, {'funcionario': funcionario})
+    
+    def post(self, request, *args, **kwargs):
+        funcionario = Funcionario.objects.get(pk=kwargs['pk'])
+        funcionario.delete()
         
         return redirect('listar_funcionario')
