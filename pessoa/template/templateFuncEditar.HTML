@@ -1,0 +1,57 @@
+{% load %}
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cadastro de Funcionário</title>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-5">
+    <h2 th:text="${funcionario.id == null} ? 'Novo Funcionário' : 'Editar Funcionário'"></h2>
+
+    <form th:action="@{/funcionarios}" th:object="${funcionario}" method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label class="form-label">Primeiro Nome</label>
+            <input type="text" name="primeiroNome" id="primeiroNome" value="{{ funcionario.primeiroNome }}" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Segundo Nome</label>
+            <input type="text" name="segundoNome" value="{{ funcionario.segundoNome }}" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Endereço</label>
+            <input type="text" name="endereco" id="endereco" value="{{ funcionario.endereco }}" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Sexo</label>
+            <select name="sexo" id="sexo" class="form-select" required>
+                <option value="">Selecione</option>
+                <option value="M" {% if funcionario.sexo == "M" %}selected{% endif %}>Masculino</option>
+                <option value="F" {% if funcionario.sexo == "F" %}selected{% endif %}>Feminino</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">CPF</label>
+            <input type="text" name="cpf" id="cpf" value="{{ funcionario.cpf }}" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Data de Nascimento</label>
+            <input type="date" name="dataNasc" id="dataNasc" value="{{ funcionario.dataNascimento|date:'Y-m-d' }}" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Telefone</label>
+            <input type="text" name="telefone" id="telefone" value="{{ funcionario.telefone }}" class="form-control" required />
+        </div>
+
+        <button type="submit" class="btn btn-success">Salvar</button>
+        <a href="{% url 'listar_funcionario' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</body>
+</html>

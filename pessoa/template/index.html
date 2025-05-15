@@ -25,6 +25,7 @@
                 <p class="card-text">Telefone: {{ f.telefone }}</p>
             </div>
         </div>
+        <a href="{% url 'editar_funcionario' f.codigoFuncionario %}"><button class="btn btn-warning bg-yellow" style="color: aliceblue;">Editar</button></a>
     {% endfor %}
     {% if funcionarios|length == 0 %}
         <p class="text-center">Nenhum funcionário cadastrado.</p>

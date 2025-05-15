@@ -1,6 +1,7 @@
 from django.db import models
 
 class Funcionario(models.Model):
+    codigoFuncionario = models.SmallAutoField(primary_key=True, verbose_name="Código do Funcionário", db_column="CodigoFuncionario")
     primeiroNome = models.CharField(max_length=100, verbose_name="Primeiro Nome", null=False, blank=False, db_column="PrimeiroNome")
     segundoNome = models.CharField(max_length=100, verbose_name="Ultimo Nome", null=False, blank=False, db_column="UltimoNome")
     endereco = models.CharField(max_length=200, verbose_name="Endereço", null=False, blank=False, db_column="Endereco")
